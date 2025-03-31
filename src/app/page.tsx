@@ -3,42 +3,43 @@ import Link from "next/link"
 import { Button } from "~/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "~/components/ui/card"
 import { Badge } from "~/components/ui/badge"
-import { Github, Linkedin, Mail, ExternalLink, ArrowDown } from "lucide-react"
+import { LinkedIn, Github } from "~/components/ui/icon"
+import { Mail, ExternalLink, ArrowDown } from "lucide-react"
 
 export default function Portfolio() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen min-w-screen bg-background">
       {/* Header */}
       <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="font-bold text-xl">Alex Morgan</div>
+        <div className="container flex h-16 items-center justify-between min-w-screen max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8">
+          <div className="font-bold text-xl">Leonardo Marinović</div>
           <nav className="hidden md:flex gap-6">
-            <Link href="#about" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="#home" className="text-muted-foreground font-bold hover:text-foreground transition-colors">
+              Home
+            </Link>
+            <Link href="#about" className="text-muted-foreground font-bold hover:text-foreground transition-colors">
               About
             </Link>
-            <Link href="#skills" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="#skills" className="text-muted-foreground font-bold hover:text-foreground transition-colors">
               Skills
             </Link>
-            <Link href="#projects" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="#projects" className="text-muted-foreground font-bold hover:text-foreground transition-colors">
               Projects
             </Link>
-            <Link href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">
-              Contact
-            </Link>
           </nav>
-          <Button>
+          <Button className="text-muted-foreground font-bold hover:text-foreground transition-colors">
             <Mail className="mr-2 h-4 w-4" /> Contact Me
           </Button>
         </div>
       </header>
 
-      <main className="container py-10">
+      <main id="home" className="container py-10 min-w-screen">
         {/* Hero Section */}
         <section className="py-20 md:py-32 flex flex-col items-center text-center">
           <div className="relative w-32 h-32 mb-8 rounded-full overflow-hidden border-4 border-primary">
-            <Image src="/placeholder.svg?height=128&width=128" alt="Alex Morgan" fill className="object-cover" />
+            <Image src="/profile_pic.jpg?height=128&width=128" alt="Leonardo Marinović" fill className="object-cover" />
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">Alex Morgan</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">Leonardo Marinović</h1>
           <h2 className="text-xl md:text-2xl text-muted-foreground mb-6">Full Stack Developer</h2>
           <p className="max-w-2xl text-muted-foreground mb-8">
             I build accessible, responsive, and performant web applications with modern technologies.
@@ -48,7 +49,7 @@ export default function Portfolio() {
               <Github className="h-5 w-5" />
             </Button>
             <Button variant="outline" size="icon">
-              <Linkedin className="h-5 w-5" />
+              <LinkedIn className="h-5 w-5" />
             </Button>
             <Button variant="outline" size="icon">
               <Mail className="h-5 w-5" />
@@ -202,14 +203,14 @@ export default function Portfolio() {
       <footer className="border-t py-6 md:py-10">
         <div className="container flex flex-col md:flex-row justify-between items-center">
           <div className="text-center md:text-left mb-4 md:mb-0">
-            <p className="text-sm text-muted-foreground">© 2024 Alex Morgan. All rights reserved.</p>
+            <p className="text-sm text-muted-foreground">© 2025 Leonardo Marinović. All rights reserved.</p>
           </div>
           <div className="flex gap-4">
             <Button variant="ghost" size="icon">
               <Github className="h-5 w-5" />
             </Button>
             <Button variant="ghost" size="icon">
-              <Linkedin className="h-5 w-5" />
+              <LinkedIn className="h-5 w-5" />
             </Button>
             <Button variant="ghost" size="icon">
               <Mail className="h-5 w-5" />
