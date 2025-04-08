@@ -1,12 +1,32 @@
+'use client';
+
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "~/components/ui/button"
+import { ThemeToggle } from "~/components/ui/themeToggle"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "~/components/ui/card"
 import { Badge } from "~/components/ui/badge"
 import { LinkedIn, Github } from "~/components/ui/icon"
 import { Mail, ExternalLink, ArrowDown } from "lucide-react"
 
 export default function Portfolio() {
+  function handleButtonClick(buttonName: String): void {
+   switch(buttonName) {
+     case "github": {
+       window.open("https://github.com/LeonardoM011");
+       break;
+     }
+     case "linkedin": {
+       window.open("https://www.linkedin.com/in/leonardo-marinovic/");
+       break;
+     }
+     case "contact": {
+       window.location.href = "#contact";
+       break;
+     }
+   }
+  }
+
   return (
     <div className="min-h-screen min-w-screen bg-background">
       {/* Header */}
@@ -27,9 +47,10 @@ export default function Portfolio() {
               Projects
             </Link>
           </nav>
-          <Button className="text-muted-foreground font-bold hover:text-foreground transition-colors">
+          <Button className="text-muted-foreground font-bold hover:text-foreground transition-colors" onClick={() => handleButtonClick("contact")}>
             <Mail className="mr-2 h-4 w-4" /> Contact Me
           </Button>
+          <ThemeToggle></ThemeToggle>
         </div>
       </header>
 
@@ -45,13 +66,13 @@ export default function Portfolio() {
             I build accessible, responsive, and performant web applications with modern technologies.
           </p>
           <div className="flex gap-4">
-            <Button variant="outline" size="icon">
-              <Github className="h-5 w-5" />
+            <Button variant="outline" size="icon" onClick={() => handleButtonClick('github')}>
+              <Github className="h-5 w-5 text-muted-foreground" fill={"text-muted-foreground"} />
             </Button>
-            <Button variant="outline" size="icon">
-              <LinkedIn className="h-5 w-5" />
+            <Button variant="outline" size="icon" onClick={() => handleButtonClick('linkedin')}>
+              <LinkedIn className="h-5 w-5 text-muted-foreground"/>
             </Button>
-            <Button variant="outline" size="icon">
+            <Button variant="outline" size="icon" onClick={() => handleButtonClick('contact')}>
               <Mail className="h-5 w-5" />
             </Button>
           </div>
@@ -61,16 +82,16 @@ export default function Portfolio() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-16 scroll-mt-16">
+        <section id="about" className="py-16 scroll-mt-16 ml-6 mr-6">
           <h2 className="text-3xl font-bold mb-8 text-center">About Me</h2>
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div className="relative h-80 rounded-lg overflow-hidden">
-              <Image src="/placeholder.svg?height=400&width=600" alt="Alex working" fill className="object-cover" />
+              <Image src="/leonardo_naocale.jpeg?height=400&width=600" alt="Leonardo Naocale" fill className="object-cover" />
             </div>
             <div>
               <p className="mb-4">
-                Hello! I'm Alex, a passionate full stack developer with 5 years of experience building web applications.
-                I specialize in React, Next.js, Node.js, and modern web technologies.
+                Hello! I'm Leonardo, a passionate full stack developer with 5 years of experience building web applications.
+                I specialize in Java Spring and modern web technologies.
               </p>
               <p className="mb-4">
                 My journey in web development started during college when I built my first website. Since then, I've
@@ -85,7 +106,7 @@ export default function Portfolio() {
         </section>
 
         {/* Skills Section */}
-        <section id="skills" className="py-16 scroll-mt-16">
+        <section id="skills" className="py-16 scroll-mt-16 ml-6 mr-6">
           <h2 className="text-3xl font-bold mb-8 text-center">Skills</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {skills.map((skill) => (
@@ -101,7 +122,7 @@ export default function Portfolio() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="py-16 scroll-mt-16">
+        <section id="projects" className="py-16 scroll-mt-16 ml-6 mr-6">
           <h2 className="text-3xl font-bold mb-8 text-center">Projects</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project) => (
@@ -140,7 +161,7 @@ export default function Portfolio() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-16 scroll-mt-16">
+        <section id="contact" className="py-16 scroll-mt-16 ml-6 mr-6">
           <h2 className="text-3xl font-bold mb-8 text-center">Get In Touch</h2>
           <Card className="max-w-2xl mx-auto">
             <CardHeader>
@@ -200,12 +221,12 @@ export default function Portfolio() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t py-6 md:py-10">
-        <div className="container flex flex-col md:flex-row justify-between items-center">
-          <div className="text-center md:text-left mb-4 md:mb-0">
+      <footer className="border-t py-6 md:py-10 min-w-screen">
+        <div className="container flex flex-col md:flex-row justify-between items-center min-w-screen">
+          <div className="text-center md:text-left mb-4 md:mb-0 ml-6">
             <p className="text-sm text-muted-foreground">© 2025 Leonardo Marinović. All rights reserved.</p>
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-4 mr-6">
             <Button variant="ghost" size="icon">
               <Github className="h-5 w-5" />
             </Button>
