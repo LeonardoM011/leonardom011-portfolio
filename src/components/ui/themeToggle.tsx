@@ -1,20 +1,24 @@
 import React from 'react'
 import { useDarkModeContext } from '~/components/darkModeProvider'
 
-const ThemeToggle: React.FC = () => {
-    const { mode, changeMode } = useDarkModeContext()
+import "@theme-toggles/react/css/Classic.css"
+import { Classic } from "@theme-toggles/react"
 
+function ThemeToggle({ className, fill, ...props }: React.ComponentProps<"svg">) {
+    const {mode, changeMode} = useDarkModeContext()
     return (
-        <select
-            value={mode}
-            onChange={(e) => changeMode(e.target.value as 'light' | 'dark' | 'system')}
-            className="p-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
-        >
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-            <option value="system">System</option>
-        </select>
+        <div className={`border-2 border-gray-500 rounded-md flex items-center justify-center pl-3 pr-3 ${className}`}>
+            <Classic
+                duration={750}
+                toggled={mode === 'dark'}
+                onToggle={
+                    (value) => {
+                        changeMode(value ? 'dark' : 'light')
+                    }
+                }
+            />
+        </div>
     )
 }
 
-export { ThemeToggle }
+export {ThemeToggle}

@@ -7,7 +7,7 @@ import { ThemeToggle } from "~/components/ui/themeToggle"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "~/components/ui/card"
 import { Badge } from "~/components/ui/badge"
 import { LinkedIn, Github } from "~/components/ui/icon"
-import { Mail, ExternalLink, ArrowDown } from "lucide-react"
+import { Mail, ExternalLink, ArrowDown, Leaf } from "lucide-react"
 
 export default function Portfolio() {
   function handleButtonClick(buttonName: String): void {
@@ -47,10 +47,12 @@ export default function Portfolio() {
               Projects
             </Link>
           </nav>
-          <Button className="text-muted-foreground font-bold hover:text-foreground transition-colors" onClick={() => handleButtonClick("contact")}>
-            <Mail className="mr-2 h-4 w-4" /> Contact Me
-          </Button>
-          <ThemeToggle></ThemeToggle>
+          <div className="flex gap-3">
+            <ThemeToggle className="hover:text-muted-foreground"></ThemeToggle>
+            <Button className="hover:text-foreground transition-colors" onClick={() => handleButtonClick("contact")}>
+              <Mail className="h-4 w-4"/><span className="text-muted-background max-md:hidden">Contact Me</span>
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -67,7 +69,7 @@ export default function Portfolio() {
           </p>
           <div className="flex gap-4">
             <Button variant="outline" size="icon" onClick={() => handleButtonClick('github')}>
-              <Github className="h-5 w-5 text-muted-foreground" fill={"text-muted-foreground"} />
+              <Github className="h-5 w-5 text-muted-foreground"/>
             </Button>
             <Button variant="outline" size="icon" onClick={() => handleButtonClick('linkedin')}>
               <LinkedIn className="h-5 w-5 text-muted-foreground"/>
@@ -117,6 +119,33 @@ export default function Portfolio() {
                 <div className="w-12 h-12 flex items-center justify-center mb-4 text-primary">{skill.icon}</div>
                 <h3 className="font-medium">{skill.name}</h3>
               </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Experience Section */}
+        <section id="experience" className="py-16 scroll-mt-16 ml-6 mr-6">
+          <h2 className="text-3xl font-bold mb-8 text-center">Experience</h2>
+          <div className="grid md:grid-cols-2 lg:flex lg:flex-row gap-6 lg:justify-center">
+            {experiences.map((exp) => (
+                <Card key={exp.title} className="overflow-hidden lg:w-1/3">
+                  <div className="relative h-48 rounded-lg overflow-hidden ml-6 mr-6">
+                    <Image src={exp.image || "/placeholder.svg"} alt={exp.title} fill className="object-scale-down" />
+                  </div>
+                  <CardHeader>
+                    <CardTitle>{exp.title}</CardTitle>
+                    <CardDescription>{exp.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {exp.technologies.map((tech) => (
+                          <Badge key={tech} variant="secondary">
+                            {tech}
+                          </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
             ))}
           </div>
         </section>
@@ -227,13 +256,13 @@ export default function Portfolio() {
             <p className="text-sm text-muted-foreground">© 2025 Leonardo Marinović. All rights reserved.</p>
           </div>
           <div className="flex gap-4 mr-6">
-            <Button variant="ghost" size="icon">
+            <Button variant="outline" size="icon" onClick={() => handleButtonClick("github")}>
               <Github className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon">
+            <Button variant="outline" size="icon" onClick={() => handleButtonClick("linkedin")}>
               <LinkedIn className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon">
+            <Button variant="outline" size="icon" onClick={() => handleButtonClick("contact")}>
               <Mail className="h-5 w-5" />
             </Button>
           </div>
@@ -245,25 +274,48 @@ export default function Portfolio() {
 
 // Mock Data
 const skills = [
+  { name: "C/C++", icon: <div className="text-2xl">🇨</div> },
+  { name: "Java", icon: <div className="text-2xl">☕</div> },
+  { name: "Spring", icon: <div className="text-2xl"><Leaf style={{color: '#6CB23F'}}/></div> },
+  { name: "Python", icon: <div className="text-2xl">🐍</div> },
+  { name: "GNU/Linux", icon: <div className="text-2xl">🐧</div> },
+  { name: "Git", icon: <div className="text-2xl">🔄</div> },
+  { name: "Docker", icon: <div className="text-2xl">🐋</div> },
+  { name: "Kotlin", icon: <div className="text-2xl font-extrabold text-purple-700">K</div> },
   { name: "React", icon: <div className="text-2xl">⚛️</div> },
   { name: "Next.js", icon: <div className="text-2xl">▲</div> },
   { name: "TypeScript", icon: <div className="text-2xl">TS</div> },
   { name: "Node.js", icon: <div className="text-2xl">🟢</div> },
   { name: "Tailwind CSS", icon: <div className="text-2xl">🌊</div> },
   { name: "JavaScript", icon: <div className="text-2xl">JS</div> },
-  { name: "HTML", icon: <div className="text-2xl">🌐</div> },
-  { name: "CSS", icon: <div className="text-2xl">🎨</div> },
-  { name: "Git", icon: <div className="text-2xl">🔄</div> },
-  { name: "MongoDB", icon: <div className="text-2xl">🍃</div> },
   { name: "PostgreSQL", icon: <div className="text-2xl">🐘</div> },
   { name: "AWS", icon: <div className="text-2xl">☁️</div> },
+]
+
+const experiences = [
+  {
+    title: "LAQO Java Developer",
+    description: "Student Intern at LAQO",
+    technologies: ["Backend", "Java", "Spring", "Oracle SQL"],
+    image: "/laqo-logo.png",
+    duration: "2023-2025",
+    location: "Zagreb, Croatia",
+  },
+  {
+    title: "KSET Web Dev Team",
+    description: "Student volunteer at KSET (Klub Studenata Elektrotehnike)",
+    technologies: ["Backend", "Frontend", "NextJS", "Typescript"],
+    image: "/kset-logo.svg",
+    duration: "2024-2025",
+    location: "Zagreb, Croatia",
+  }
 ]
 
 const projects = [
   {
     title: "E-commerce Platform",
     description: "A full-featured online store with payment processing and inventory management.",
-    image: "/placeholder.svg?height=300&width=500",
+    image: "/office-placeholder.jpg",
     technologies: ["Next.js", "TypeScript", "Stripe", "Tailwind CSS"],
     github: "https://github.com",
     demo: "https://example.com",
