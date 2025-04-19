@@ -164,14 +164,14 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project) => (
               <Card key={project.title} className="overflow-hidden">
-                <div className="relative h-48">
+                <div className="relative h-48 ml-6 mr-6 rounded-lg overflow-hidden">
                   <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
                 </div>
                 <CardHeader>
                   <CardTitle>{project.title}</CardTitle>
                   <CardDescription>{project.description}</CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="mt-auto">
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech) => (
                       <Badge key={tech} variant="secondary">
@@ -180,15 +180,17 @@ export default function Portfolio() {
                     ))}
                   </div>
                 </CardContent>
-                <CardFooter className="flex justify-between">
+                <CardFooter className="flex justify-between mt-auto">
                   <Button variant="outline" size="sm" asChild>
                     <Link href={project.github} target="_blank">
                       <Github className="mr-2 h-4 w-4" /> Code
                     </Link>
                   </Button>
-                  <Button size="sm" asChild>
+                  <Button size="sm" className="bg-gray-300 px-4 py-2 rounded-md cursor-not-allowed opacity-50" disabled >
                     <Link href={project.demo} target="_blank">
-                      <ExternalLink className="mr-2 h-4 w-4" /> Demo
+                      <div className="flex items-center">
+                        <ExternalLink className="mr-2 h-4 w-4" />Demo
+                      </div>
                     </Link>
                   </Button>
                 </CardFooter>
@@ -237,7 +239,7 @@ export default function Portfolio() {
                   <input
                     id="subject"
                     className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    placeholder="Project Inquiry"
+                    placeholder="Subject"
                   />
                 </div>
                 <div className="space-y-2">
@@ -247,7 +249,7 @@ export default function Portfolio() {
                   <textarea
                     id="message"
                     className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    placeholder="Tell me about your project..."
+                    placeholder="Tell me about yourself..."
                   />
                 </div>
                 <Button className="w-full">Send Message</Button>
@@ -324,7 +326,7 @@ const experiences = [
     description: "Competitor at Student Competition for students of TVZ",
     technologies: ["Backend", "Java", "Spring", "Frontend", "NextJS", "Typescript"],
     image: "/logo-tvzmc2.svg",
-    duration: "2021-2023",
+    duration: "2022-2023",
     location: "Zagreb, Croatia",
     href: "https://mc2.tvz.hr/"
   }
@@ -332,51 +334,51 @@ const experiences = [
 
 const projects = [
   {
-    title: "E-commerce Platform",
-    description: "A full-featured online store with payment processing and inventory management.",
-    image: "/office-placeholder.jpg",
-    technologies: ["Next.js", "TypeScript", "Stripe", "Tailwind CSS"],
-    github: "https://github.com",
+    title: "Spot A Spot",
+    description: "Online platform for creating and managing events made for MC2 competition.",
+    image: "/spotaspot.png",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Java", "Spring Boot", "PostgreSQL"],
+    github: "https://github.com/LeonardoM011/SpotASpot",
     demo: "https://example.com",
   },
   {
-    title: "Task Management App",
-    description: "A collaborative task manager with real-time updates and team features.",
-    image: "/placeholder.svg?height=300&width=500",
-    technologies: ["React", "Node.js", "Socket.io", "MongoDB"],
-    github: "https://github.com",
+    title: "Dungeon Coder Game",
+    description: "Programming game where players solve coding challenges to progress through a dungeon.",
+    image: "/dungeon-crawler.png",
+    technologies: ["TypeScript", "Pixi.js", "Java", "Spring Boot", "PostgreSQL"],
+    github: "https://github.com/LeonardoM011/dungeon-mc2-natjecanje",
     demo: "https://example.com",
   },
   {
-    title: "Weather Dashboard",
-    description: "A weather application with forecasts, maps, and location-based alerts.",
-    image: "/placeholder.svg?height=300&width=500",
-    technologies: ["React", "OpenWeather API", "Chart.js", "CSS"],
-    github: "https://github.com",
+    title: "Matematicar",
+  description: "Puzzle creation game made in my own game engine made in 8th grade in C++.",
+    image: "/matematicar.jpg?height=300&width=500",
+    technologies: ["C++", "OpenGL", "SDL2"],
+    github: "https://github.com/LeonardoM011/matematicar",
     demo: "https://example.com",
   },
   {
-    title: "Recipe Finder",
-    description: "Search and save recipes based on ingredients you have at home.",
-    image: "/placeholder.svg?height=300&width=500",
-    technologies: ["Next.js", "Spoonacular API", "Tailwind CSS"],
-    github: "https://github.com",
+    title: "KobeGE",
+    description: "Game engine written in C++.",
+    image: "/teapot-kobege.png?height=300&width=500",
+    technologies: ["C++", "OpenGL", "SDL2"],
+    github: "https://github.com/LeonardoM011/kobege",
     demo: "https://example.com",
   },
   {
-    title: "Fitness Tracker",
-    description: "Track workouts, set goals, and visualize progress over time.",
-    image: "/placeholder.svg?height=300&width=500",
-    technologies: ["React Native", "Firebase", "D3.js"],
-    github: "https://github.com",
+    title: "My portfolio site",
+    description: "Portfolio site i made in Next.js.",
+    image: "/portfolio-ss.jpg?height=300&width=500",
+    technologies: ["Next.js", "Typescript", "Tailwind CSS"],
+    github: "https://github.com/LeonardoM011/leonardom011-portfolio",
     demo: "https://example.com",
   },
   {
-    title: "Blog Platform",
-    description: "A content management system with markdown support and SEO features.",
+    title: "Leca Calculator",
+    description: "Web calculator made for kids.",
     image: "/placeholder.svg?height=300&width=500",
-    technologies: ["Next.js", "MDX", "PostgreSQL", "Tailwind CSS"],
-    github: "https://github.com",
+    technologies: ["Javascript", "Python", "Flask", "PostgreSQL"],
+    github: "https://github.com/LeonardoM011/leca-calculator",
     demo: "https://example.com",
   },
 ]
