@@ -43,6 +43,9 @@ export default function Portfolio() {
             <Link href="#skills" className="text-muted-foreground font-bold hover:text-foreground transition-colors">
               Skills
             </Link>
+            <Link href="#experience" className="text-muted-foreground font-bold hover:text-foreground transition-colors">
+              Experience
+            </Link>
             <Link href="#projects" className="text-muted-foreground font-bold hover:text-foreground transition-colors">
               Projects
             </Link>
@@ -60,7 +63,7 @@ export default function Portfolio() {
         {/* Hero Section */}
         <section className="py-20 md:py-32 flex flex-col items-center text-center">
           <div className="relative w-32 h-32 mb-8 rounded-full overflow-hidden border-4 border-primary">
-            <Image src="/profile_pic.jpg?height=128&width=128" alt="Leonardo Marinović" fill className="object-cover" />
+            <Image src="/profile-pic.jpg?height=128&width=128" alt="Leonardo Marinović" fill className="object-cover" />
           </div>
           <h1 className="text-4xl md:text-6xl font-bold mb-4">Leonardo Marinović</h1>
           <h2 className="text-xl md:text-2xl text-muted-foreground mb-6">Full Stack Developer</h2>
@@ -88,20 +91,18 @@ export default function Portfolio() {
           <h2 className="text-3xl font-bold mb-8 text-center">About Me</h2>
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div className="relative h-80 rounded-lg overflow-hidden">
-              <Image src="/leonardo_naocale.jpeg?height=400&width=600" alt="Leonardo Naocale" fill className="object-cover" />
+              <Image src="/leonardo-sunglasses.jpeg?height=400&width=600" alt="Leonardo with sunglasses" fill className="object-cover" />
             </div>
             <div>
               <p className="mb-4">
-                Hello! I'm Leonardo, a passionate full stack developer with 5 years of experience building web applications.
-                I specialize in Java Spring and modern web technologies.
+                Hello, my name is Leonardo Marinović, developer and tech enthusiast based in Croatia.
+
               </p>
               <p className="mb-4">
-                My journey in web development started during college when I built my first website. Since then, I've
-                worked with startups and established companies to create intuitive and performant digital experiences.
+                I specialize in Java Spring and modern web technologies.
               </p>
               <p>
-                When I'm not coding, you can find me hiking, reading sci-fi novels, or experimenting with new recipes in
-                the kitchen.
+                My other passion is music, and I love playing electric guitar in my free time.
               </p>
             </div>
           </div>
@@ -145,6 +146,13 @@ export default function Portfolio() {
                       ))}
                     </div>
                   </CardContent>
+                  <CardFooter className="flex justify-between">
+                    <Button size="sm" className="ml-auto" asChild>
+                      <Link href={exp.href} target="_blank">
+                        <ExternalLink className="mr-2 h-4 w-4" />Navigate
+                      </Link>
+                    </Button>
+                  </CardFooter>
                 </Card>
             ))}
           </div>
@@ -300,6 +308,7 @@ const experiences = [
     image: "/laqo-logo.png",
     duration: "2023-2025",
     location: "Zagreb, Croatia",
+    href: "https://www.laqo.hr/",
   },
   {
     title: "KSET Web Dev Team",
@@ -308,6 +317,16 @@ const experiences = [
     image: "/kset-logo.svg",
     duration: "2024-2025",
     location: "Zagreb, Croatia",
+    href: "https://www.kset.org/"
+  },
+  {
+    title: "MC2 TVZ Student Competition",
+    description: "Competitor at Student Competition for students of TVZ",
+    technologies: ["Backend", "Java", "Spring", "Frontend", "NextJS", "Typescript"],
+    image: "/logo-tvzmc2.svg",
+    duration: "2021-2023",
+    location: "Zagreb, Croatia",
+    href: "https://mc2.tvz.hr/"
   }
 ]
 
