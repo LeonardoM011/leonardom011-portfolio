@@ -214,7 +214,7 @@ export default function Portfolio() {
             </CardHeader>
             <CardContent>
               {/* Netlify */}
-              <form className="grid gap-4" method="POST" data-netlify="true">
+              <form className="grid gap-4" method="POST" netlify>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium">
@@ -258,7 +258,7 @@ export default function Portfolio() {
                     placeholder="Tell me about yourself..."
                   />
                 </div>
-                <Button className="w-full">Send Message</Button>
+                <Button className="w-full" type="submit">Send Message</Button>
               </form>
             </CardContent>
           </Card>
