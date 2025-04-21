@@ -52,7 +52,7 @@ export default function Portfolio() {
           </nav>
           <div className="flex gap-3">
             <ThemeToggle className="hover:text-muted-foreground"></ThemeToggle>
-            <Button className="hover:text-foreground transition-colors" onClick={() => handleButtonClick("contact")}>
+            <Button className="hover:text-muted-foreground transition-colors" onClick={() => handleButtonClick("contact")}>
               <Mail className="h-4 w-4"/><span className="text-muted-background max-md:hidden">Contact Me</span>
             </Button>
           </div>
@@ -134,6 +134,11 @@ export default function Portfolio() {
                     <Image src={exp.image || "/placeholder.svg"} alt={exp.title} fill className="object-scale-down" />
                   </div>
                   <CardHeader>
+                    <div className="flex justify-end mb-1">
+                      <Badge variant="outline">
+                        {exp.duration || "2025"}
+                      </Badge>
+                    </div>
                     <CardTitle>{exp.title}</CardTitle>
                     <CardDescription>{exp.description}</CardDescription>
                   </CardHeader>
@@ -147,7 +152,7 @@ export default function Portfolio() {
                     </div>
                   </CardContent>
                   <CardFooter className="flex justify-between">
-                    <Button size="sm" className="ml-auto" asChild>
+                    <Button size="sm" className="ml-auto hover:text-muted-foreground transition-colours" asChild>
                       <Link href={exp.href} target="_blank">
                         <ExternalLink className="mr-2 h-4 w-4" />Navigate
                       </Link>
@@ -208,7 +213,8 @@ export default function Portfolio() {
               <CardDescription>Fill out the form below and I'll get back to you as soon as possible.</CardDescription>
             </CardHeader>
             <CardContent>
-              <form className="grid gap-4">
+              {/* Netlify */}
+              <form className="grid gap-4" method="POST" data-netlify="true">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium">
@@ -305,9 +311,9 @@ const skills = [
 const experiences = [
   {
     title: "LAQO Java Developer",
-    description: "Student Intern at LAQO",
+    description: "Student Intern at LAQO (by Croatia Osiguranje)",
     technologies: ["Backend", "Java", "Spring", "Oracle SQL"],
-    image: "/laqo-logo.png",
+    image: "/laqo-logo.png?height=300&width=500",
     duration: "2023-2025",
     location: "Zagreb, Croatia",
     href: "https://www.laqo.hr/",
@@ -316,7 +322,7 @@ const experiences = [
     title: "KSET Web Dev Team",
     description: "Student volunteer at KSET (Klub Studenata Elektrotehnike)",
     technologies: ["Backend", "Frontend", "NextJS", "Typescript"],
-    image: "/kset-logo.svg",
+    image: "/kset-logo.svg?height=300&width=500",
     duration: "2024-2025",
     location: "Zagreb, Croatia",
     href: "https://www.kset.org/"
@@ -325,7 +331,7 @@ const experiences = [
     title: "MC2 TVZ Student Competition",
     description: "Competitor at Student Competition for students of TVZ",
     technologies: ["Backend", "Java", "Spring", "Frontend", "NextJS", "Typescript"],
-    image: "/logo-tvzmc2.svg",
+    image: "/logo-tvzmc2.svg?height=300&width=500",
     duration: "2022-2023",
     location: "Zagreb, Croatia",
     href: "https://mc2.tvz.hr/"
@@ -336,7 +342,7 @@ const projects = [
   {
     title: "Spot A Spot",
     description: "Online platform for creating and managing events made for MC2 competition.",
-    image: "/spotaspot.png",
+    image: "/spotaspot.png?height=300&width=500",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Java", "Spring Boot", "PostgreSQL"],
     github: "https://github.com/LeonardoM011/SpotASpot",
     demo: "https://example.com",
@@ -344,7 +350,7 @@ const projects = [
   {
     title: "Dungeon Coder Game",
     description: "Programming game where players solve coding challenges to progress through a dungeon.",
-    image: "/dungeon-crawler.png",
+    image: "/dungeon-crawler.png?height=300&width=500",
     technologies: ["TypeScript", "Pixi.js", "Java", "Spring Boot", "PostgreSQL"],
     github: "https://github.com/LeonardoM011/dungeon-mc2-natjecanje",
     demo: "https://example.com",
@@ -376,7 +382,7 @@ const projects = [
   {
     title: "Leca Calculator",
     description: "Web calculator made for kids.",
-    image: "/placeholder.svg?height=300&width=500",
+    image: "/leca-calc.png?height=300&width=500",
     technologies: ["Javascript", "Python", "Flask", "PostgreSQL"],
     github: "https://github.com/LeonardoM011/leca-calculator",
     demo: "https://example.com",
