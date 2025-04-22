@@ -4,9 +4,23 @@ import { type FormEvent, useState } from "react";
 import { Button } from "~/components/ui/button";
 import { Alert } from "~/components/alert";
 
+interface ContactFormProps {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
 export function ContactForm() {
   const [status, setStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [formData, setFormData] = useState<ContactFormProps>({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
 
   const HandleContactFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -18,7 +32,13 @@ export function ContactForm() {
             const res = await fetch('/__forms.html', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: formData
+                body: new URLSearchParams({
+                  'form-name': 'contact',
+                  'name': formData.get('name') as string,
+                  'email': formData.get('email') as string,
+                  'subject': formData.get('subject') as string,
+                  'message': formData.get('message') as string,
+                }).toString()
             });
             if (res.status === 200) {
                 setStatus('ok');
@@ -49,6 +69,9 @@ export function ContactForm() {
               name="name"
               className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               placeholder="John Doe"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              required
             />
           </div>
           <div className="space-y-2">
@@ -61,6 +84,9 @@ export function ContactForm() {
               type="email"
               className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               placeholder="john@example.com"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              required
             />
           </div>
         </div>
@@ -73,6 +99,9 @@ export function ContactForm() {
             name="subject"
             className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             placeholder="Subject"
+            value={formData.subject}
+            onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+            required
           />
         </div>
         <div className="space-y-2">
@@ -84,6 +113,9 @@ export function ContactForm() {
             name="message"
             className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             placeholder="Send me a message..."
+            value={formData.message}
+            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+            required
           />
         </div>
         <Button className="w-full" type="submit" disabled={status === 'pending'}>Send Message</Button>
