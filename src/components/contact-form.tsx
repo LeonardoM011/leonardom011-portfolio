@@ -42,6 +42,12 @@ export function ContactForm() {
             });
             if (res.status === 200) {
                 setStatus('ok');
+                setFormData({
+                    name: "",
+                    email: "",
+                    subject: "",
+                    message: "",
+                });
             } else {
                 setStatus('error');
                 setError(`${res.status} ${res.statusText}`);
@@ -50,8 +56,6 @@ export function ContactForm() {
             setStatus('error');
             setError(`${e}`);
         }
-    {status === 'ok' && <Alert type="success">Submitted!</Alert>}
-    {status === 'error' && <Alert type="error">{error}</Alert>}
   }
 
 
@@ -119,6 +123,8 @@ export function ContactForm() {
           />
         </div>
         <Button className="w-full" type="submit" disabled={status === 'pending'}>Send Message</Button>
+        {status === 'ok' && <Alert type="success">Submitted!</Alert>}
+        {status === 'error' && <Alert type="error">{error}</Alert>}
       </div>
     </form>
   )
