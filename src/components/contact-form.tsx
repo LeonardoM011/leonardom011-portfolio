@@ -32,11 +32,12 @@ export function ContactForm() {
         }
     {status === 'ok' && <Alert type="success">Submitted!</Alert>}
     {status === 'error' && <Alert type="error">{error}</Alert>}
-
   }
+
 
   return (
     <form name="contact" onSubmit={HandleContactFormSubmit}>
+      <input type="hidden" name="form-name" value="contact" />
       <div className="grid gap-4">
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
