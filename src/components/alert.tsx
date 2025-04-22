@@ -11,7 +11,7 @@ export function Alert({ children, className, type}: AlertProps) {
     <div
       className={[
         'flex gap-4 p-4 rounded-sm',
-        type === 'error' ? 'bg-rose-400 text-neutral-900' : 'bg-primary text-primary-content',
+        type === 'error' ? 'bg-rose-400 text-background' : 'bg-green-400 text-background',
         className
       ]
         .filter(Boolean)
