@@ -86,7 +86,7 @@ export function ContactForm() {
             placeholder="Send me a message..."
           />
         </div>
-        <Button className="w-full" type="submit">Send Message</Button>
+        <Button className="w-full" type="submit" disabled={status === 'pending'}>Send Message</Button>
       </div>
     </form>
   )
