@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "~/components/ui/badge"
 import { LinkedIn, Github } from "~/components/ui/icon"
 import { Mail, ExternalLink, ArrowDown, Leaf } from "lucide-react"
+import { HandleContactFormSubmit } from "~/app/HandleContactFormSubmit"
 
 export default function Portfolio() {
   function handleButtonClick(buttonName: String): void {
@@ -214,7 +215,7 @@ export default function Portfolio() {
             </CardHeader>
             <CardContent>
               {/* Netlify */}
-              <form name="contact" method="POST" data-netlify="true">
+              <form name="contact" onSubmit={HandleContactFormSubmit}>
                 <div className="grid gap-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
